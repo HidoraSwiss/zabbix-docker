@@ -2,6 +2,7 @@ version: '3.5'
 services:
   zabbix-server:
     image: zabbix/zabbix-server-mysql:alpine-6.0-latest
+    restart: always
     ports:
       - "10051:10051"
     volumes:
@@ -56,6 +57,7 @@ services:
 
   zabbix-web-nginx-mysql:
     image: zabbix/zabbix-web-nginx-mysql:alpine-6.0-latest
+    restart: always
     ports:
       - "127.0.0.1:36080:8080"
       - "127.0.0.1:36443:8443"
@@ -107,6 +109,7 @@ services:
 
   mysql-server:
     image: mariadb:10.5
+    restart: always
     command:
       - mysqld
       - --character-set-server=utf8mb4
@@ -131,6 +134,7 @@ services:
 
   zabbix-agent:
     image: zabbix/zabbix-agent:alpine-6.0-latest
+    restart: always
     ports:
       - "10050:10050"
     volumes:
