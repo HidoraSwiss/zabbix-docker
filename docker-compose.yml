@@ -20,10 +20,8 @@ services:
     deploy:
       resources:
         limits:
-          #cpus: '0.70'
           memory: 1G
         reservations:
-          #cpus: '0.5'
           memory: 512M
     env_file:
       - ./env_vars/.env_db_mysql
@@ -59,8 +57,8 @@ services:
     image: zabbix/zabbix-web-nginx-mysql:alpine-6.0-latest
     restart: always
     ports:
-      - "127.0.0.1:36080:8080"
-      - "127.0.0.1:36443:8443"
+      - "8080:8080"
+      - "8443:8443"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
@@ -69,10 +67,8 @@ services:
     deploy:
       resources:
         limits:
-        #  cpus: '0.70'
           memory: 512M
         reservations:
-        #  cpus: '0.5'
           memory: 256M
     env_file:
       - ./env_vars/.env_db_mysql
