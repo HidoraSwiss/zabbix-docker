@@ -16,7 +16,6 @@ services:
       - ./zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys:ro
       - ./zbx_env/var/lib/zabbix/mibs:/var/lib/zabbix/mibs:ro
       - snmptraps:/var/lib/zabbix/snmptraps:rw
-      - ./zabbix_server.conf:/etc/zabbix/zabbix_server.conf
     deploy:
       resources:
         limits:
