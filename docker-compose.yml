@@ -56,8 +56,7 @@ services:
     image: zabbix/zabbix-web-nginx-mysql:alpine-6.2-latest
     restart: always
     ports:
-      - "8080:8080"
-      - "8443:8443"
+      - "80:8080"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
@@ -127,26 +126,6 @@ services:
         - zabbix-database
         - mysql-databasse
 
-  zabbix-agent:
-    image: zabbix/zabbix-agent:alpine-6.2-latest
-    restart: always
-    ports:
-      - "10050:10050"
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
-      - ./zbx_env/etc/zabbix/zabbix_agentd.d:/etc/zabbix/zabbix_agentd.d:ro
-      - ./zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules:ro
-      - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc:ro
-      - ./zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys:ro
-    env_file:
-      - ./env_vars/.env_agent
-    networks:
-      zbx_net_backend:
-        aliases:
-        - zabbix-agent
-        - zabbix-agent-passive
-        - zabbix-agent-alpine
 
 networks:
   zbx_net_frontend:
